@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/simplerest
+    username: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    #show-sql: true
+    hibernate.ddl-auto: create
+    open-in-view: false
+  jackson:
+    default-property-inclusion: non_null
+server:
+  port: 8081
+  error:
+    include-stacktrace: never
+---
+logging:
+  level:
+    fabianopinto.goproxy.simplerest: debug

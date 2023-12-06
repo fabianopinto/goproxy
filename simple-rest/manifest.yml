@@ -1,0 +1,16 @@
+---
+applications:
+  - name: goproxy-simple-rest
+    buildpacks:
+      - https://github.com/cloudfoundry/java-buildpack
+    path: ./target/simple-rest-0.0.1-SNAPSHOT.jar
+    services:
+      - simple-rest-database
+    env:
+      url: jdbc:postgres://localhost:5432/postgres
+      username: postgres
+      password:
+    health-check-type: http
+    health-check-http-endpoint: /actuator/health
+    readiness-health-check-type: http
+    readiness-health-check-http-endpoint: /actuator/health/readiness

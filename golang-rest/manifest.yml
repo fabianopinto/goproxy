@@ -1,0 +1,16 @@
+---
+applications:
+  - name: goproxy-sample1-rest
+    buildpacks:
+      - https://github.com/cloudfoundry/go-buildpack
+    services:
+      - sample1-rest-database
+    env:
+      DATASOURCE_URL: postgres://localhost:5432/sample1
+  - name: goproxy-sample2-rest
+    buildpacks:
+      - https://github.com/cloudfoundry/go-buildpack
+    services:
+      - sample2-rest-database
+    env:
+      DATASOURCE_URL: postgres://localhost:5432/sample2

@@ -1,0 +1,60 @@
+### Sample 1
+POST {{host}}/contact
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "emailAddress": "john.doe@email.com",
+  "phoneNumber": "66554433",
+  "personalNotes": "Some personal NOTES.",
+  "group": "AA"
+}
+
+### Random sample
+POST {{host}}/contact
+Content-Type: application/json
+
+{
+  "firstName": "{{$random.alphabetic(5)}}",
+  "lastName": "{{$random.alphabetic(7)}}",
+  "emailAddress": "{{$random.email}}",
+  "phoneNumber": "{{$random.integer(10000000, 99999999)}}",
+  "group": "AA"
+}
+
+### Contact by Id
+GET {{host}}/contact/AA/1
+
+### Contact not found
+GET {{host}}/contact/AA/1000
+
+### All contacts
+GET {{host}}/contact/AA
+
+### Contacts by last name
+GET {{host}}/contact/AA?lastName=Doe
+
+### Contacts by last updated
+GET {{host}}/contact/AA?version=2023-12-01T20:13:48.487605Z
+
+### Change field
+PUT {{host}}/contact/AA/1
+Content-Type: application/json
+
+{
+  "phoneNumber": "22334455",
+  "personalNotes": "Updated NOTES at {{$isoTimestamp}}."
+}
+
+### Change fail
+PUT {{host}}/contact/AA/1000
+Content-Type: application/json
+
+{
+  "id": 1,
+  "phoneNumber": "66554433"
+}
+
+### Delete contact
+DELETE {{host}}/contact/AA/1

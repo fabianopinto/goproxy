@@ -1,0 +1,89 @@
+config:
+  target: http://goproxy-sample1-rest.cloud.pcftest.com
+#  target: http://localhost:8080
+  phases:
+    - name: Warm up phase
+      duration: 60
+      arrivalRate: 1
+      rampTo: 5
+    - name: Ramp up load
+      duration: 300
+      arrivalRate: 5
+      rampTo: 20
+    - name: Spike phase
+      duration: 60
+      arrivalRate: 20
+      rampTo: 50
+  plugins:
+    ensure: { }
+    apdex: { }
+    metrics-by-endpoint:
+      useOnlyRequestNames: true
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+  variables:
+    group: [ "AA", "BB", "CC", "DD" ]
+    personalNotes:
+      - "Lobortis scelerisque fermentum dui faucibus. Congue quisque egestas diam in arcu cursus euismod quis."
+      - "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      - "Eget nulla facilisi etiam dignissim diam quis enim. Pellentesque pulvinar pellentesque habitant morbi. Metus dictum at tempor commodo ullamcorper a lacus vestibulum. Sed ullamcorper morbi tincidunt ornare massa eget. Elit ullamcorper dignissim cras tincidunt. Ipsum dolor sit amet consectetur. Porta lorem mollis aliquam ut porttitor leo a. Praesent tristique magna sit amet purus gravida quis blandit. Ac orci phasellus egestas tellus rutrum tellus pellentesque. At lectus urna duis convallis convallis tellus id interdum. Euismod quis viverra nibh cras pulvinar mattis nunc sed blandit. Eget felis eget nunc lobortis mattis aliquam. Nec dui nunc mattis enim ut tellus elementum. Fermentum odio eu feugiat pretium nibh ipsum consequat nisl. Adipiscing bibendum est ultricies integer quis auctor elit sed. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. Justo donec enim diam vulputate ut pharetra sit."
+      - "Amet justo donec enim diam vulputate ut pharetra sit amet. Eget duis at tellus at. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Lectus urna duis convallis convallis tellus id interdum. Habitant morbi tristique senectus et netus. Vulputate mi sit amet mauris commodo quis. Sit amet purus gravida quis blandit turpis cursus in hac. Faucibus in ornare quam viverra orci sagittis eu volutpat. Est ullamcorper eget nulla facilisi etiam. Neque viverra justo nec ultrices. Felis eget velit aliquet sagittis."
+      - "Consectetur libero id faucibus nisl tincidunt eget nullam non. Et netus et malesuada fames ac turpis egestas integer. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant. Suscipit tellus mauris a diam maecenas sed enim. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend. Senectus et netus et malesuada fames ac turpis. Netus et malesuada fames ac turpis egestas. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh sed. Sit amet nisl purus in mollis nunc sed id. Sodales ut etiam sit amet nisl purus. Eros in cursus turpis massa tincidunt dui. In fermentum et sollicitudin ac orci phasellus egestas tellus. Aliquam ultrices sagittis orci a scelerisque purus. Interdum velit laoreet id donec ultrices. Odio ut enim blandit volutpat maecenas. Sit amet mattis vulputate enim nulla. Leo in vitae turpis massa. Auctor elit sed vulputate mi sit amet mauris commodo quis. Accumsan sit amet nulla facilisi morbi tempus iaculis. Arcu cursus euismod quis viverra nibh cras pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Aenean et tortor at risus viverra adipiscing at in. Imperdiet proin fermentum leo vel orci. Id semper risus in hendrerit gravida rutrum quisque. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Bibendum at varius vel pharetra vel turpis nunc eget. Aliquet nibh praesent tristique magna sit amet purus. Netus et malesuada fames ac turpis egestas integer eget. Laoreet non curabitur gravida arcu ac tortor dignissim. Eget nunc lobortis mattis aliquam faucibus. In arcu cursus euismod quis. Ac turpis egestas sed tempus urna et pharetra pharetra. Sit amet volutpat consequat mauris nunc congue nisi vitae suscipit. Dolor morbi non arcu risus quis. Vitae elementum curabitur vitae nunc sed velit dignissim. Sit amet consectetur adipiscing elit ut aliquam. Bibendum est ultricies integer quis auctor elit sed vulputate. Enim sit amet venenatis urna cursus eget. Urna neque viverra justo nec ultrices dui sapien eget. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Eget aliquet nibh praesent tristique magna sit amet. Viverra nibh cras pulvinar mattis nunc sed blandit libero. Ac turpis egestas integer eget aliquet. Rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Sed adipiscing diam donec adipiscing. Cursus risus at ultrices mi. Eget aliquet nibh praesent tristique magna. Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Sit amet nisl purus in mollis nunc. Vel eros donec ac odio tempor orci dapibus ultrices in. Viverra nibh cras pulvinar mattis. Sit amet porttitor eget dolor morbi. Turpis massa sed elementum tempus egestas sed. Pharetra massa massa ultricies mi quis. Pharetra sit amet aliquam id diam maecenas. Feugiat nibh sed pulvinar proin gravida hendrerit lectus. Tristique sollicitudin nibh sit amet commodo nulla facilisi. Ornare quam viverra orci sagittis eu. Ac feugiat sed lectus vestibulum mattis ullamcorper velit. Risus nullam eget felis eget nunc lobortis. Ut faucibus pulvinar elementum integer enim neque. Velit euismod in pellentesque massa placerat duis ultricies lacus. Iaculis nunc sed augue lacus viverra vitae congue. In fermentum posuere urna nec. Sit amet commodo nulla facilisi nullam vehicula ipsum. Id faucibus nisl tincidunt eget nullam non. Proin sagittis nisl rhoncus mattis rhoncus urna neque."
+      - "Tristique senectus et netus et malesuada fames ac turpis. Lectus nulla at volutpat diam ut venenatis tellus in. Vulputate ut pharetra sit amet aliquam id. Interdum consectetur libero id faucibus nisl tincidunt. Massa ultricies mi quis hendrerit dolor magna eget est. Tristique senectus et netus et malesuada fames ac turpis. Pellentesque elit ullamcorper dignissim cras tincidunt lobortis. Odio facilisis mauris sit amet massa vitae tortor condimentum. Arcu risus quis varius quam quisque id diam. Urna et pharetra pharetra massa massa ultricies. Lorem donec massa sapien faucibus et molestie ac. Est ullamcorper eget nulla facilisi etiam. Cras tincidunt lobortis feugiat vivamus at augue. Facilisi nullam vehicula ipsum a arcu. Adipiscing bibendum est ultricies integer quis auctor elit sed vulputate. Risus sed vulputate odio ut enim. Feugiat sed lectus vestibulum mattis. Sed libero enim sed faucibus. Nibh sed pulvinar proin gravida hendrerit. Augue neque gravida in fermentum et sollicitudin ac orci phasellus."
+    personalNotesUpdate:
+      - "Non quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor."
+      - "Elit pellentesque habitant morbi tristique senectus et netus et malesuada."
+      - "Congue eu consequat ac felis donec et odio pellentesque diam."
+      - "Lorem sed risus ultricies tristique nulla."
+      - "Leo in vitae turpis massa sed elementum tempus egestas."
+      - "Lacus sed viverra tellus in hac habitasse platea."
+      - "Ac turpis egestas integer eget aliquet."
+      - "In aliquam sem fringilla ut morbi tincidunt augue."
+      - "Ultrices tincidunt arcu non sodales neque sodales."
+      - "Risus in hendrerit gravida rutrum quisque non."
+      - "Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis."
+      - "Id volutpat lacus laoreet non curabitur gravida."
+      - "Urna neque viverra justo nec ultrices dui sapien."
+      - "Rhoncus est pellentesque elit ullamcorper dignissim."
+scenarios:
+  - name: "CRUD operations on random contacts"
+    flow:
+      - post:
+          name: create
+          url: "/contact"
+          json:
+            firstName: "{{ $randomString(5) }}"
+            lastName: "{{ $randomString(7) }}"
+            emailAddress: "{{ $randomString(14) }}@{{ $randomString(3) }}.org"
+            phoneNumber: "{{ $randomNumber(10000000, 99999999) }}"
+            personalNotes: "{{ personalNotes }}"
+            group: "{{ group }}"
+          expect:
+            - statusCode: 201
+          capture:
+            header: "location"
+            as: "location"
+      - get:
+          name: read
+          url: "{{ location }}"
+          expect:
+            - statusCode: 200
+      - think: 2
+      - put:
+          name: update
+          url: "{{ location }}"
+          json:
+            phoneNumber: "{{ $randomNumber(10000000, 99999999) }}"
+            personalNotes: "{{ personalNotesUpdate }}"
+          expect:
+            - statusCode: 202
+      - think: 2
+      - delete:
+          name: delete
+          url: "{{ location }}"
+          expect:
+            - statusCode: 204

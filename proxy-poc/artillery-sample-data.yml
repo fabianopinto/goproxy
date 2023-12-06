@@ -1,0 +1,45 @@
+config:
+  target: http://goproxy-sample1-rest.cloud.pcftest.com
+#  target: http://localhost:8080
+  phases:
+    - name: Load samples
+      duration: 60
+      arrivalCount: 500
+  plugins:
+    ensure: { }
+    apdex: { }
+    metrics-by-endpoint:
+      useOnlyRequestNames: true
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+  payload:
+    path: "sample-data.csv"
+    fields:
+      - "firstName"
+      - "lastName"
+      - "emailAddress"
+      - "phoneNumber"
+      - "personalNotes"
+    skipHeader: true
+    order: sequence
+  variables:
+    group: [ "AA", "BB", "CC", "DD" ]
+scenarios:
+  - name: "Create sample contacts"
+    flow:
+      - post:
+          name: create
+          url: "/contact"
+          json:
+            firstName: "{{ firstName }}"
+            lastName: "{{ lastName }}"
+            emailAddress: "{{ emailAddress }}"
+            phoneNumber: "{{ phoneNumber }}"
+            personalNotes: "{{ personalNotes }}"
+            group: "{{ group }}"
+          expect:
+            - statusCode: 201

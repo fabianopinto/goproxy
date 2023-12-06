@@ -1,0 +1,60 @@
+### Sample 1
+POST http://localhost:8080/contact
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "emailAddress": "john.doe@email.com",
+  "phoneNumber": "66554433",
+  "personalNotes": "Some personal notes.",
+  "group": "AA"
+}
+
+### Random sample
+POST http://localhost:8080/contact
+Content-Type: application/json
+
+{
+  "firstName": "{{$random.alphabetic(5)}}",
+  "lastName": "{{$random.alphabetic(7)}}",
+  "emailAddress": "{{$random.email}}",
+  "phoneNumber": "{{$random.integer(10000000, 99999999)}}",
+  "group": "AA"
+}
+
+### Contact by Id
+GET http://localhost:8080/contact/AA/1
+
+### Contact not found
+GET http://localhost:8080/contact/AA/1000
+
+### All contacts
+GET http://localhost:8080/contact/AA
+
+### Contacts by last name
+GET http://localhost:8080/contact/AA?lastName=Doe
+
+### Contacts by last updated -- source system
+GET http://localhost:8080/contact/AA?version=2023-09-16T17:20:55.277Z
+
+### Change field
+PUT http://localhost:8080/contact/AA/1
+Content-Type: application/json
+
+{
+  "phoneNumber": "22334455",
+  "personalNotes": "Updated notes at {{$isoTimestamp}}."
+}
+
+### Change fail
+PUT http://localhost:8080/contact/AA/1000
+Content-Type: application/json
+
+{
+  "id": 1,
+  "phoneNumber": "66554433"
+}
+
+### Delete contact
+DELETE http://localhost:8080/contact/AA/1
